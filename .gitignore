@@ -1,0 +1,9 @@
+build
+mx.scratch
+!.settings
+cmake/stm32cubemx/
+.vscode/
+*.bin
+*.hex
+*.elf
+*.map
