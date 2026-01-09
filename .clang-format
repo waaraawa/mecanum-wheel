@@ -1,4 +1,4 @@
-# Hwikgo C language coding standards v1.4
+# WAARAAWA C language coding standards v1.4
 Language:        Cpp
 # BasedOnStyle:  LLVM
 AccessModifierOffset: -4
@@ -176,3 +176,4 @@ WhitespaceSensitiveMacros:
   - NS_SWIFT_NAME
   - CF_SWIFT_NAME
 ...
+
