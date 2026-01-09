@@ -1,4 +1,5 @@
-build
+build/
+build_cli/
 mx.scratch
 !.settings
 cmake/stm32cubemx/

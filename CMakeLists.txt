@@ -49,9 +49,10 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 )
 
 # Collect user source files
-file(GLOB USER_SOURCES
-    user/**/*.c
+file(GLOB_RECURSE USER_SOURCES
+    user/*.c
 )
+message("USER_SOURCES: ${USER_SOURCES}")
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${USER_SOURCES})
 
 # Add include paths
