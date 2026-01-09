@@ -1,53 +1,55 @@
 # Test Guide
 
-This document explains how to run unit tests and generate code coverage reports for the Mecanum Wheel project using Ceedling and Docker.
+This document explains how to run unit tests, code coverage, and complexity analysis for the Mecanum Wheel project.
+
+## Quick Start
+
+The project includes a `test.sh` script to simplify running tasks via Docker.
+
+```bash
+# Run all unit tests
+./test.sh
+
+# Run code coverage
+./test.sh gcov
+
+# Run specific test (e.g., test_app.c)
+./test.sh ceedling test:test_app
+
+# Run complexity analysis (Lizard)
+./test.sh lizard
+
+# Clean build artifacts
+./test.sh clean
+```
 
 ## Prerequisites
 
-- **Docker**: Ensure Docker is installed and running on your machine.
-- **Docker Image**: The project uses the `throwtheswitch/madsciencelab-arm-none-eabi-plugins:latest` image.
+- **Docker**: Required for Ceedling unit tests and gcov.
+- **Python 3 & Lizard**: Required for complexity analysis (install via `pip install lizard`).
+
+## Detailed Instructions
+
+### 1. Unit Tests (Ceedling)
+Tests are executed inside a Docker container (`throwtheswitch/madsciencelab-arm-none-eabi-plugins`).
+
+- Run all tests: `./test.sh`
+- Run a specific test task: `./test.sh ceedling [task]`
+  - Example: `./test.sh ceedling test:test_app`
+
+### 2. Code Coverage (gcov)
+Generates HTML coverage reports.
+
+- Run coverage: `./test.sh gcov`
+- View report: Open `ceedling/build/artifacts/gcov/gcovr/coverage.html` in your browser.
+
+### 3. Complexity Analysis (Lizard)
+Runs cyclomatic complexity analysis on the `user` directory. Requires `lizard` installed on the host.
+
+- Run analysis: `./test.sh lizard`
 
 ## Directory Structure
-
-The unit tests are located in the `ceedling` directory:
-- `ceedling/test/`: Contains test files (`test_*.c`).
-- `ceedling/project.yml`: Ceedling configuration file.
-- `ceedling/build/`: (Generated) Build artifacts and reports.
-
-## Running Unit Tests
-
-Run the following command from the project root directory. This command mounts the current directory into the Docker container and executes `ceedling test:all`.
-
-```bash
-docker run --rm -v "$(pwd):/home/dev/project" \
-  throwtheswitch/madsciencelab-arm-none-eabi-plugins:latest \
-  bash -c "cd /home/dev/project/ceedling && ceedling test:all"
-```
-
-### Expected Output
-You should see a summary of passed, failed, and ignored tests.
-```
------------------------
-✅ OVERALL TEST SUMMARY
------------------------
-TESTED:  X
-PASSED:  Y
-FAILED:  Z
-IGNORED: W
-```
-
-## Running Code Coverage (gcov)
-
-Run the following command from the project root directory to generate code coverage reports.
-
-```bash
-docker run --rm -v "$(pwd):/home/dev/project" \
-  throwtheswitch/madsciencelab-arm-none-eabi-plugins:latest \
-  bash -c "cd /home/dev/project/ceedling && ceedling gcov:all"
-```
-
-### Viewing Coverage Reports
-After running the gcov command, the HTML coverage report will be generated at:
-`ceedling/build/artifacts/gcov/gcovr/coverage.html`
-
-You can open this file in your web browser to view the detailed line-by-line coverage.
+- `ceedling/test/`: Test source files.
+- `ceedling/project.yml`: Ceedling configuration.
+- `ceedling/build/`: Build artifacts (ignored by git).
+- `test.sh`: Main entry point script.
