@@ -60,7 +60,7 @@ case $CMD in
     config|cfg)
         mkdir -p $BUILD_DIR
         cd $BUILD_DIR
-        cmake -S $PROJECT_ROOT -B . -DCMAKE_TOOLCHAIN_FILE=$PROJECT_ROOT/cmake/gcc-arm-none-eabi.cmake -DCMAKE_BUILD_TYPE=$TYPE
+        cmake -S $PROJECT_ROOT -B . -DCMAKE_TOOLCHAIN_FILE=$PROJECT_ROOT/cmake/gcc-arm-none-eabi.cmake -DCMAKE_BUILD_TYPE=$TYPE -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
         ;;
     build|b)
         if [ ! -d "$BUILD_DIR" ]; then
@@ -78,7 +78,7 @@ case $CMD in
         rm -rf $BUILD_DIR
         mkdir -p $BUILD_DIR
         cd $BUILD_DIR
-        cmake -S $PROJECT_ROOT -B . -DCMAKE_TOOLCHAIN_FILE=$PROJECT_ROOT/cmake/gcc-arm-none-eabi.cmake -DCMAKE_BUILD_TYPE=$TYPE
+        cmake -S $PROJECT_ROOT -B . -DCMAKE_TOOLCHAIN_FILE=$PROJECT_ROOT/cmake/gcc-arm-none-eabi.cmake -DCMAKE_BUILD_TYPE=$TYPE -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
         cmake --build .
         ;;
 esac

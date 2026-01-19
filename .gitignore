@@ -9,3 +9,4 @@ cmake/stm32cubemx/
 *.hex
 *.elf
 *.map
+misra_rules.txt

@@ -19,6 +19,9 @@ The project includes a `test.sh` script to simplify running tasks via Docker.
 # Run complexity analysis (Lizard)
 ./test.sh lizard
 
+# Run MISRA C:2012 Static Analysis (Cppcheck)
+./test.sh misra
+
 # Clean build artifacts
 ./test.sh clean
 ```
@@ -27,6 +30,7 @@ The project includes a `test.sh` script to simplify running tasks via Docker.
 
 - **Docker**: Required for Ceedling unit tests and gcov.
 - **Python 3 & Lizard**: Required for complexity analysis (install via `pip install lizard`).
+- **Cppcheck**: Required for MISRA analysis (install via `brew install cppcheck`).
 
 ## Detailed Instructions
 
@@ -47,6 +51,12 @@ Generates HTML coverage reports.
 Runs cyclomatic complexity analysis on the `user` directory. Requires `lizard` installed on the host.
 
 - Run analysis: `./test.sh lizard`
+
+### 4. MISRA C:2012 Static Analysis (Cppcheck)
+Runs MISRA compliance checks using Cppcheck with the MISRA addon. Requires `cppcheck` installed on the host.
+
+- Run analysis: `./test.sh misra`
+- Configuration: `misra.json` and `.misra_suppressions` (if exists).
 
 ## Directory Structure
 - `ceedling/test/`: Test source files.
