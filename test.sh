@@ -75,7 +75,7 @@ case "$1" in
         python3 -c "import json; db=json.load(open('$COMPILE_DB')); print(json.dumps([e for e in db if '/user/' in e['file']]))" > "$FILTERED_DB"
 
         echo "Running MISRA C:2012 analysis on user code (Cores: $CORES)..."
-        cppcheck --project="$FILTERED_DB" --addon=misra.json --std=c99 --platform=mips32 -D__GNUC__ -j $CORES \
+        cppcheck --project="$FILTERED_DB" --addon=tools/misra.json --std=c99 --platform=mips32 -D__GNUC__ -j $CORES \
             --suppress="*:*Drivers/*" --suppress="*:*Core/*" --suppress="*:*Middlewares/*" \
             --enable=style,warning,performance,portability --inline-suppr --suppress=missingIncludeSystem \
             --quiet --error-exitcode=1
